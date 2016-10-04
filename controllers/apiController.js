@@ -8,10 +8,10 @@ var apiController = {
 					var options = {
 						host: 'api.stubhub.com',
 						path: '/search/catalog/events/v3?status=active&city=Denver&sort=eventDateLocal',
-						headers : {"Authorization": "Bearer " + configVars.stubhubAppToken }
+						headers : { "Authorization": "Bearer " + configVars.stubhubAppToken }
 					};
 
-					var req = https.get(options, function(res){
+					https.get(options, function(res){
 
 						var chunks = [];
 
@@ -21,18 +21,27 @@ var apiController = {
 						
 						}).on('end', function(){
 
-							var body = Buffer.concat(chunks);
+							var body = JSON.parse(Buffer.concat(chunks));
 
-							console.log(JSON.parse(body));
+							for (var i in body.events) {
+
+								var event = body.events[i].name
+								var venue = body.events[i].venue.name;
+								var eventDate = body.events[i].eventDateLocal.substr(0,10);
+								var today = new Date().toISOString().substr(0,10);
+
+								if (eventDate === today && venue == 'Pepsi Center') {
+
+								console.log('You have the fucking ' + event + ' today at ' + venue + '!');
+
+								}
+							}
 
 						});
 					});
 
-					req.on('error', function(e){
-						console.log('Error: ' + e.message);
-					});
-
-					res.sendStatus(res.statusCode);
+					res.render('index');
+					// res.sendStatus(res.statusCode);
 
 				}
 };

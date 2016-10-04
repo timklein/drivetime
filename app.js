@@ -14,7 +14,11 @@ app.set('views', __dirname + '/views');
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res) {
+// StubHub API Route
+app.get('/', apiController.stubhub);
+
+// Eventful API Route
+app.get('/tst', function(req, res) {
 	client.searchEvents({ location: 'denver', date: 'Sunday', sort_order: 'popularity' }, function(err, data){
 		if(err){
 			return console.error(err);
@@ -36,8 +40,6 @@ app.get('/', function(req, res) {
 	res.render('index');
 
 });
-
-app.get('/tst', apiController.stubhub);
 
 app.listen(3000, function() {
 	console.log('Listening on port ' + app.get('port'));
