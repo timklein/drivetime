@@ -4,7 +4,7 @@
   "description": "What's fucking with my drive time to Denver?",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js --ignore data/"
   },
   "author": "Tim Klein",
   "license": "ISC",

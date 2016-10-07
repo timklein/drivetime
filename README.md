@@ -16,5 +16,6 @@ Loading the /tst path will generate a console log in the terminal with the detai
 + ~~Format page layout~~
 + ~~Integrate Eventful API~~
 + ~~Integrate StubHub API because Eventful API does not provide a full list of large Denver events~~
++ Work out UTC/Local Date issue
 + Find ways to identify critical events
 + Template events into homepage
