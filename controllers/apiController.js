@@ -8,7 +8,7 @@ var apiController = {
 	stubhub	:  	function(req,res){
 					var options = {
 						host: 'api.stubhub.com',
-						path: '/search/catalog/events/v3?status=active&city=Denver&sort=eventDateLocal&rows=25',
+						path: '/search/catalog/events/v3?status=active&city=Denver&sort=eventDateLocal&rows=40',
 						headers : { "Authorization": "Bearer " + configVars.stubhubAppToken }
 					};
 
@@ -37,7 +37,7 @@ var apiController = {
 								// console.log(body.events);
 								// console.log(eventDate + ' ' + venue + ' ' + event);
 
-								if (eventDate === today && keyVenues.indexOf(venue) != -1) {
+								if (/*eventDate === today &&*/ keyVenues.indexOf(venue) != -1) {
 
 									eventDetails.push(body.events[i]);
 									console.log('You have the ' + event + ' today at ' + venue + '!');
