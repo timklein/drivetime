@@ -1,0 +1,13 @@
+extends layout
+
+block content
+
+	.content
+		h1 So, what's hosing my commute to Denver <i>today</i> ?
+		
+		each event in eventDetails
+			p= event.name + ' at ' + event.venue.name
+
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js")
+	script $.backstretch("img/bg.png", {speed: 500})

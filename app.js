@@ -6,16 +6,15 @@ var apiController = require('./controllers/apiController.js');
 
 var client = new eventful.Client(config.eventfulAppKey);
 
- 
-
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 
 app.use(express.static(__dirname + '/public'));
 
-// StubHub API Route
+// StubHub API Routes
 app.get('/', apiController.stubhub);
+app.get('/today', apiController.today);
 
 // Eventful API Route
 app.get('/tst', function(req, res) {
