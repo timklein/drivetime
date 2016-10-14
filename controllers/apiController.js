@@ -27,22 +27,21 @@ var apiController = {
 
 							eventDetails = [];
 							var keyVenues = [4602, 1683, 33370];
+							var exclude = [9614457, 9583788];
 
 							for (var i in body.events) {
 
 								var event = body.events[i].name;
-								var venue = body.events[i].venue.id;
+								var id = body.events[i].id;
+								var venue = body.events[i].venue.name;
+								var venueID = body.events[i].venue.id;
 								var eventDate = body.events[i].eventDateLocal.substr(0,10);
 								var today = new Date().toISOString().substr(0,10);
 
-								// console.log(body.events);
-								// console.log(eventDate + ' ' + venue + ' ' + event);
-
-								if (/*eventDate === today &&*/ keyVenues.indexOf(venue) != -1) {
+								if (eventDate === today && keyVenues.indexOf(venueID) != -1 && exclude.indexOf(id) === -1 ) {
 
 									eventDetails.push(body.events[i]);
 									console.log('You have the ' + event + ' today at ' + venue + '!');
-									// console.log(eventDetails);
 
 								}
 							}
