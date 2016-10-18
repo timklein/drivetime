@@ -3,8 +3,8 @@ var fs = require('fs');
 var eventDetails = require('../models/eventDetails.js');
 
 // Load Configuration
-var configVars = require('../config/configVars.json');
-var stubhubAppToken = process.env.STUBHUB_TOKEN || 	configVars.stubhubAppToken;
+// var configVars = require('../config/configVars.json');
+var stubhubAppToken = process.env.STUBHUB_TOKEN /*|| 	configVars.stubhubAppToken*/;
 
 var apiController = {
 	stubhub	:  	function(req,res){
