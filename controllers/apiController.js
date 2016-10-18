@@ -9,8 +9,12 @@ var apiController = {
 	stubhub	:  	function(req,res){
 					var options = {
 						host: 'api.stubhub.com',
-						path: '/search/catalog/events/v3?status=active&city=Denver&sort=eventDateLocal&rows=100',
+						path: '/search/catalog/events/v3?status=active&city=Denver&sort=eventDateLocal&rows=50',
 						headers : { "Authorization": "Bearer " + configVars.stubhubAppToken }
+					};
+
+					var onComplete = function(){
+						res.render('index', { eventDetails : eventDetails });
 					};
 
 					https.get(options, function(res){
@@ -31,12 +35,18 @@ var apiController = {
 
 							for (var i in body.events) {
 
+								console.log(i + ' ' + (body.events.length - 1) );
+
 								var event = body.events[i].name;
 								var id = body.events[i].id;
 								var venue = body.events[i].venue.name;
 								var venueID = body.events[i].venue.id;
 								var eventDate = body.events[i].eventDateLocal.substr(0,10);
 								var today = new Date().toISOString().substr(0,10);
+
+								if ( i == (body.events.length-1) ) {
+									onComplete();
+								}
 
 								if (eventDate === today && keyVenues.indexOf(venueID) != -1 && exclude.indexOf(id) === -1 ) {
 
@@ -49,13 +59,12 @@ var apiController = {
 							fs.writeFile('./data/events.json', JSON.stringify(eventDetails), (err) => {
 								if (err) throw err;
 								console.log('Saved');
+							
 							});
 
 						});
-					
-					});
 
-					res.redirect('today');
+					});
 
 				},
 
