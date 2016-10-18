@@ -4,13 +4,14 @@ var eventDetails = require('../models/eventDetails.js');
 
 // Load Configuration
 var configVars = require('../config/configVars.json');
+var stubhubAppToken = process.env.STUBHUB_TOKEN || 	configVars.stubhubAppToken;
 
 var apiController = {
 	stubhub	:  	function(req,res){
 					var options = {
 						host: 'api.stubhub.com',
 						path: '/search/catalog/events/v3?status=active&city=Denver&sort=eventDateLocal&rows=50',
-						headers : { "Authorization": "Bearer " + configVars.stubhubAppToken }
+						headers : { "Authorization": "Bearer " + stubhubAppToken }
 					};
 
 					var onComplete = function(){
