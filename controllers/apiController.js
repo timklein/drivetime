@@ -30,7 +30,7 @@ var apiController = {
 							var body = JSON.parse(Buffer.concat(chunks));
 
 							eventDetails = [];
-							var keyVenues = [4602, 1683, 33370];
+							var keyVenues = [4602, 1683, 33370, 7986];
 							var exclude = [9614457, 9583788];
 
 							for (var i in body.events) {
