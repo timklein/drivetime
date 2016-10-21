@@ -17,6 +17,14 @@ body {
 }
 
 .answer {
-	padding: 40px 25px;
-	border-top: 4px solid black;
+	padding: 40px 25px 5px;
+	border-top: 4px solid lightgray;
+}
+
+.event {
+	padding: 1em 0;
+}
+
+.event:nth-of-type(odd), .last {
+	background-color: #eee;
 }

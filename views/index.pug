@@ -3,19 +3,48 @@ extends layout
 block content
 
 	.content
-		h1 So, what's going to hose my commute to Denver <i>today</i> ?
+		h1 So, what's going to hose my commute<br>to Denver <i>today</i> ?
 		
 		- var eventCount = eventDetails.length;
 
 		case eventCount
 			when 0
-				h2.answer Looks like you should be safe today. Just your normal knuckleheads!
+				h2.answer Well, you <em>should</em> be ok...
+
+				p.event We don't see any significant events on the calendar, but this is Denver.<br>Looks like your commute should just be the normal knucklehead nightmare. 
 			when 1
+				h2.answer Only finding 1 major event today!
+
 				each event in eventDetails
 					- var time = function(dateString) {return new Date(dateString).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: true}); };
-					p Well, if you're going to be anywhere near #{event.venue.name}, #{event.name} is at #{time(event.eventDateLocal)}
+					p.event You might want to try to avoid the #{event.venue.name} area around #{time(event.eventDateLocal)}. <br>#{event.name} might give you some headaches around that time.
+			when 2
+				h2.answer Uh oh, this isn't looking good...
+				
+				- var inc = ['First', 'Then'];
+				
+				each event, index in eventDetails
+					
+					- var time = function(dateString) {return new Date(dateString).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: true}); };
+					
+					p.event #{inc[index]}, if you're going to be anywhere near #{event.venue.name},<br>#{event.name} is at #{time(event.eventDateLocal)}
+
 			default
-				h2 You're Fucked!
+				h2.answer Oh MAN! You're SCREWED!
+				
+				- var inc = ['This nightmare starts off with', 'Next,'];
+				
+				each event, index in eventDetails
+					
+					- var time = function(dateString) {return new Date(dateString).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: true}); };
+					
+					if (index+1) === eventCount
+						h3 ...and last but certainly not least
+						p.event.last #{event.name}<br>at #{event.venue.name} is at #{time(event.eventDateLocal)}
+						h3 You really might just be better off staying home today!
+					else
+						p.event #{inc[index]} #{event.name}<br>at #{event.venue.name} around #{time(event.eventDateLocal)}
+
 
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js")
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js")

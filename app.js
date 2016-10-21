@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'));
 
 // StubHub API Routes
 app.get('/', apiController.stubhub);
-app.get('/today', apiController.today);
+// app.get('/today', apiController.today);
 
 // Eventful API Route
 // app.get('/tst', function(req, res) {
