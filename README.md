@@ -4,11 +4,10 @@
 
 ## Usage
 
-You will need a free Eventful API key and a StubHub Application Token. Load these values into the appropriate place in the *config/configVars.example* file, then rename the file *configVars.json*
+You will need a free StubHub Application Token available through http://developer.stubhub.com
+Load this value into the appropriate place in the *config/configVars.example* file, then rename the file *configVars.json*
 
 Currently, loading the homepage will generate a console log in the terminal with the details of 1 page of today's Denver events from the StubHub API.
-
-Loading the /tst path will generate a console log in the terminal with the details of today's Denver events from the Eventful API and the event titles for page 1 of the results.
 
 ## To Do
 
@@ -16,8 +15,7 @@ Loading the /tst path will generate a console log in the terminal with the detai
 + ~~Format page layout~~
 + ~~Integrate Eventful API~~
 + ~~Integrate StubHub API because Eventful API does not provide a full list of large Denver events~~
-+ Work out UTC/Local Date issue
-+ Find ways to identify critical events
 + ~~Work out issues with asyncronous execution (intital page load)~~
 + ~~Template events into homepage~~
-+ Fine tune page templating
++ Work out UTC/Local Date issue
++ Find more ways to identify critical events

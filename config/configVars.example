@@ -1,4 +1,3 @@
 {
-	"eventfulAppKey"	: "Load your Eventful API key here",
 	"stubhubAppToken"	: "Load your StubHub Application Token here"
 }
