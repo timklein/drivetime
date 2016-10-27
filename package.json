@@ -11,6 +11,7 @@
   "dependencies": {
     "eventful-node": "^1.1.1",
     "express": "^4.14.0",
+    "jquery": "^3.1.1",
     "pug": "^2.0.0-beta6"
   },
   "devDependencies": {
