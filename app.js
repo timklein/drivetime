@@ -13,6 +13,6 @@ app.use(express.static(__dirname + '/public'), express.static(__dirname + '/node
 // StubHub API Routes
 app.get('/', apiController.stubhub);
 
-app.listen(3000, function() {
+app.listen(app.get('port'), function() {
 	console.log('Listening on port ' + app.get('port'));
 });
