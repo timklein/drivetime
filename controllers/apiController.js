@@ -9,7 +9,7 @@ var apiController = {
 	stubhub	:  	function(req,res){
 					var options = {
 						host: 'api.stubhub.com',
-						path: '/search/catalog/events/v3?status=active&city=Denver&sort=eventDateLocal&rows=50',
+						path: '/search/catalog/events/v3?status=active&city=Denver&sort=eventDateLocal&rows=100',
 						headers : { "Authorization": "Bearer " + configVars.stubhubAppToken }
 					};
 
@@ -23,9 +23,9 @@ var apiController = {
 						var chunks = [];
 
 						res.on('data', function(chunk){
-							
+
 							chunks.push(chunk);
-						
+
 						}).on('end', function(){
 
 							var body = JSON.parse(Buffer.concat(chunks));
@@ -34,8 +34,8 @@ var apiController = {
 							eventDetails = [];
 
 							// Venues to include in selection - Currently: Pepsi Center, Sports Authority Field, Boettcher, Convention Center
-							var keyVenues = [4602, 1683, 33370, 7986];
-							
+							var keyVenues = [4205, 4602, 1683, 33370, 7986];
+
 							// Include event ID's of odd listings like "Season Ticket Packages"
 							var exclude = [9614457, 9583788];
 
@@ -45,8 +45,11 @@ var apiController = {
 								var id = body.events[i].id;
 								var venue = body.events[i].venue.name;
 								var venueID = body.events[i].venue.id;
+
+								// Event date in local timezone formatted as an ISO string
 								var eventDate = body.events[i].eventDateLocal.substr(0,10);
-								var today = new Date().toISOString().substr(0,10);
+								// Today's date in local timezone formatted as an ISO string
+								var today = new Date(Date.now() - (new Date().getTimezoneOffset() * 60000)).toISOString().substr(0, 10);
 
 								// Wait until last event is processed before rendering
 								if ( i == (body.events.length-1) ) {
